@@ -10,11 +10,13 @@ function App() {
   return (
     <BrowserRouter>
       <AuroraBackground>
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/loading" element={<Loading />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
+
       </AuroraBackground>
     </BrowserRouter>
   );

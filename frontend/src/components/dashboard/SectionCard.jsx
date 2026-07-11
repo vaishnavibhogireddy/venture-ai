@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
@@ -35,32 +35,23 @@ function SectionCard({ title, summary, children }) {
         </motion.div>
 
       </button>
-
-
-      {open && (
-        <motion.div
-          initial={{
-            opacity: 0,
-            height: 0,
-          }}
-          animate={{
-            opacity: 1,
-            height: "auto",
-          }}
-          transition={{
-            duration: 0.4,
-          }}
-          className="border-t border-white/10 p-7"
-        >
-
-          {children || (
-            <p className="text-gray-400">
-              Detailed analytics will appear here.
-            </p>
-          )}
-
-        </motion.div>
+      <AnimatePresence>
+  {open && (
+    <motion.div
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: "auto" }}
+      exit={{ opacity: 0, height: 0 }}
+      transition={{ duration: 0.35 }}
+      className="border-t border-white/10 p-7 overflow-hidden"
+    >
+      {children || (
+        <p className="text-gray-400">
+          Detailed analytics will appear here.
+        </p>
       )}
+    </motion.div>
+  )}
+</AnimatePresence>
 
     </motion.div>
   );

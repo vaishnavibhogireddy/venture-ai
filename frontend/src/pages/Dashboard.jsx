@@ -7,9 +7,9 @@ function Dashboard() {
     <div className="min-h-screen bg-[#04050B] flex">
 
       <Sidebar />
-
-      <main className="flex-1 overflow-y-auto p-10">
-        <BlueprintSections />
+      <main className="flex-1 overflow-y-auto p-10 space-y-8">
+  <Overview />
+  <BlueprintSections />
       </main>
 
     </div>

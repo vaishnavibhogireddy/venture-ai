@@ -11,16 +11,21 @@ import {
 } from "lucide-react";
 
 const menu = [
-  { icon: LayoutDashboard, title: "Overview" },
-  { icon: TrendingUp, title: "Market Analysis" },
-  { icon: Users, title: "Competitors" },
-  { icon: DollarSign, title: "Funding" },
-  { icon: Target, title: "Go To Market" },
-  { icon: ShieldCheck, title: "Legal" },
-  { icon: FileText, title: "Blueprint PDF" },
+  { icon: LayoutDashboard, title: "Overview", id: "overview" },
+  { icon: TrendingUp, title: "Market Analysis", id: "market-analysis" },
+  { icon: Users, title: "Competitors", id: "competitors" },
+  { icon: DollarSign, title: "Funding", id: "funding" },
+  { icon: Target, title: "Go To Market", id: "go-to-market" },
+  { icon: ShieldCheck, title: "Legal", id: "legal" },
+  { icon: FileText, title: "Blueprint PDF", id: "pdf" },
 ];
-
 function Sidebar() {
+  const scrollToSection = (id) => {
+  document.getElementById(id)?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+};
   return (
     <aside className="w-72 border-r border-white/10 bg-white/5 backdrop-blur-xl">
 
@@ -43,6 +48,7 @@ function Sidebar() {
 
           return (
             <motion.button
+  onClick={() => scrollToSection(item.id)}
               whileHover={{
                 x: 6,
                 backgroundColor: "rgba(255,255,255,0.08)",

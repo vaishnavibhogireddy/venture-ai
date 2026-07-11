@@ -6,6 +6,7 @@ function Hero() {
   const navigate = useNavigate();
 
   const [idea, setIdea] = useState("");
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const chips = [
     "AI",
@@ -54,12 +55,18 @@ function Hero() {
           className="mt-14 rounded-[34px] border border-white/10 bg-white/5 backdrop-blur-2xl p-6 shadow-2xl"
         >
 
-          <textarea
-            value={idea}
-            onChange={(e) => setIdea(e.target.value)}
-            placeholder="Describe your startup idea..."
-            className="w-full h-52 resize-none bg-transparent outline-none text-white placeholder:text-gray-500 text-lg"
-          />
+     <textarea
+  value={idea}
+  onFocus={() => setIsExpanded(true)}
+  onBlur={() => {
+    if (!idea.trim()) setIsExpanded(false);
+  }}
+  onChange={(e) => setIdea(e.target.value)}
+  placeholder="Describe your startup idea..."
+  className={`w-full resize-none bg-transparent outline-none text-white placeholder:text-gray-500 text-lg transition-all duration-500 ease-in-out ${
+    isExpanded ? "h-52" : "h-28"
+  }`}
+/>
 
           <div className="flex flex-wrap gap-3 mt-4">
 
@@ -78,18 +85,18 @@ function Hero() {
         </motion.div>
 
         <motion.button
-          whileHover={{
-            scale: 1.05,
-          }}
-          whileTap={{
-            scale: 0.97,
-          }}
-          onClick={() => navigate("/loading")}
-          className="mt-8 rounded-2xl bg-gradient-to-r from-cyan-500 to-violet-600 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-cyan-500/20"
-        >
-          Generate Blueprint →
-        </motion.button>
-
+  whileHover={idea.trim() ? { scale: 1.05 } : {}}
+  whileTap={idea.trim() ? { scale: 0.97 } : {}}
+  onClick={() => navigate("/loading")}
+  disabled={!idea.trim()}
+  className={`mt-8 rounded-2xl px-10 py-4 text-lg font-semibold transition-all duration-300 ${
+    idea.trim()
+      ? "bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 cursor-pointer"
+      : "bg-gray-700 text-gray-400 cursor-not-allowed opacity-60"
+  }`}
+>
+  Generate Blueprint →
+</motion.button>
         <p className="mt-6 text-sm text-gray-500">
           Powered by <span className="text-cyan-400">IBM Granite</span>
         </p>

@@ -97,3 +97,16 @@
   }
 
 }
+.aurora-video {
+  animation: slowAurora 40s ease-in-out infinite alternate;
+}
+
+@keyframes slowAurora {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
