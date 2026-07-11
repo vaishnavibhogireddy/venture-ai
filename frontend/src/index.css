@@ -1,14 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
 @import "tailwindcss";
 
-:root {
-  font-family: "Inter", sans-serif;
-  color: #161616;
-  background: #F8FAFC;
+
+.aurora-container {
+
+  position:absolute;
+
+  inset:0;
+
+  overflow:hidden;
+
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
+
+.aurora {
+
+  position:absolute;
+
+  width:900px;
+
+  height:500px;
+
+  border-radius:50%;
+
+  filter:blur(120px);
+
+  opacity:.45;
+
+  animation: drift 35s ease-in-out infinite alternate;
+
+}
+
+
+/* Electric purple left */
+
+.aurora-purple {
+
+  left:-300px;
+
+  top:100px;
+
+  background:#8b5cf6;
+
+}
+
+
+/* Deep blue center */
+
+.aurora-blue {
+
+  left:35%;
+
+  top:-150px;
+
+  background:#2563eb;
+
+  animation-delay:8s;
+
+}
+
+
+/* Cyan right */
+
+.aurora-cyan {
+
+  right:-300px;
+
+  top:150px;
+
+  background:#06b6d4;
+
+  animation-delay:15s;
+
+}
+
+
+
+@keyframes drift {
+
+  from {
+
+    transform:
+      translate(-40px,0)
+      scale(1)
+      rotate(-5deg);
+
+  }
+
+
+  to {
+
+    transform:
+      translate(80px,60px)
+      scale(1.2)
+      rotate(8deg);
+
+  }
+
 }
