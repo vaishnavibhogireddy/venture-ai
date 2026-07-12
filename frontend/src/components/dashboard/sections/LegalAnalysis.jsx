@@ -2,9 +2,21 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-function LegalAnalysis() {
-  const [open, setOpen] = useState(false);
 
+function LegalAnalysis({ blueprint }) {
+
+const [open,setOpen] = useState(false);
+
+
+const legal = blueprint?.legal || "";
+
+
+const summary =
+legal.split("\n").find(
+(line)=>line.trim().length>20
+)
+||
+"AI will suggest legal requirements for your startup.";
   return (
     <motion.div
       layout
@@ -15,25 +27,19 @@ function LegalAnalysis() {
         className="w-full p-7 text-left"
       >
         <div className="flex items-center justify-between">
-
           <div>
-
             <h2 className="text-2xl font-semibold text-white">
               Legal & Compliance
             </h2>
 
             <p className="mt-4 max-w-4xl leading-7 text-gray-400">
-              AI identified the registrations, licenses, privacy policies,
-              intellectual property requirements and legal obligations for your
-              startup.
+              {summary}
             </p>
-
           </div>
 
           <motion.div animate={{ rotate: open ? 180 : 0 }}>
             <ChevronDown className="text-cyan-400" size={28} />
           </motion.div>
-
         </div>
       </button>
 
@@ -43,42 +49,15 @@ function LegalAnalysis() {
           animate={{ opacity: 1, height: "auto" }}
           className="border-t border-white/10 p-7"
         >
+          <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-6">
+            <h3 className="text-xl font-semibold text-cyan-400">
+              AI Legal Recommendations
+            </h3>
 
-          <div className="grid gap-6 md:grid-cols-2">
-
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-6">
-
-              <h3 className="text-lg font-semibold text-white">
-                Checklist
-              </h3>
-
-              <ul className="mt-5 space-y-3 text-gray-400">
-                <li>✔ Business Registration</li>
-                <li>✔ GST / Tax Compliance</li>
-                <li>✔ Privacy Policy</li>
-                <li>✔ Terms & Conditions</li>
-                <li>✔ Trademark Registration</li>
-                <li>✔ Data Protection Compliance</li>
-              </ul>
-
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-6">
-
-              <h3 className="text-lg font-semibold text-white">
-                AI Recommendation
-              </h3>
-
-              <p className="mt-5 leading-7 text-gray-400">
-                Register your brand early, ensure compliance with local data
-                protection regulations and prepare investor-ready legal
-                documentation before fundraising.
-              </p>
-
-            </div>
-
+            <p className="mt-5 whitespace-pre-wrap leading-8 text-gray-300">
+              {legal || "No legal recommendations generated."}
+            </p>
           </div>
-
         </motion.div>
       )}
     </motion.div>

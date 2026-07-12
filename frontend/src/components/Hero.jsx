@@ -21,16 +21,24 @@ function Hero() {
     setIdea(`Build a ${chip} startup that `);
   };
 
+  const handleGenerate = () => {
+    if (!idea.trim()) return;
+
+    navigate("/loading", {
+      state: {
+        idea,
+      },
+    });
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6">
-
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="w-full max-w-5xl text-center"
       >
-
         <p className="uppercase tracking-[0.35em] text-cyan-400 text-sm font-semibold">
           AI Startup Intelligence Platform
         </p>
@@ -54,22 +62,20 @@ function Hero() {
           whileHover={{ scale: 1.01 }}
           className="mt-14 rounded-[34px] border border-white/10 bg-white/5 backdrop-blur-2xl p-6 shadow-2xl"
         >
-
-     <textarea
-  value={idea}
-  onFocus={() => setIsExpanded(true)}
-  onBlur={() => {
-    if (!idea.trim()) setIsExpanded(false);
-  }}
-  onChange={(e) => setIdea(e.target.value)}
-  placeholder="Describe your startup idea..."
-  className={`w-full resize-none bg-transparent outline-none text-white placeholder:text-gray-500 text-lg transition-all duration-500 ease-in-out ${
-    isExpanded ? "h-52" : "h-28"
-  }`}
-/>
+          <textarea
+            value={idea}
+            onFocus={() => setIsExpanded(true)}
+            onBlur={() => {
+              if (!idea.trim()) setIsExpanded(false);
+            }}
+            onChange={(e) => setIdea(e.target.value)}
+            placeholder="Describe your startup idea..."
+            className={`w-full resize-none bg-transparent outline-none text-white placeholder:text-gray-500 text-lg transition-all duration-500 ease-in-out ${
+              isExpanded ? "h-52" : "h-28"
+            }`}
+          />
 
           <div className="flex flex-wrap gap-3 mt-4">
-
             {chips.map((chip) => (
               <button
                 key={chip}
@@ -79,30 +85,27 @@ function Hero() {
                 {chip}
               </button>
             ))}
-
           </div>
-
         </motion.div>
 
         <motion.button
-  whileHover={idea.trim() ? { scale: 1.05 } : {}}
-  whileTap={idea.trim() ? { scale: 0.97 } : {}}
-  onClick={() => navigate("/loading")}
-  disabled={!idea.trim()}
-  className={`mt-8 rounded-2xl px-10 py-4 text-lg font-semibold transition-all duration-300 ${
-    idea.trim()
-      ? "bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 cursor-pointer"
-      : "bg-gray-700 text-gray-400 cursor-not-allowed opacity-60"
-  }`}
->
-  Generate Blueprint →
-</motion.button>
+          whileHover={idea.trim() ? { scale: 1.05 } : {}}
+          whileTap={idea.trim() ? { scale: 0.97 } : {}}
+          onClick={handleGenerate}
+          disabled={!idea.trim()}
+          className={`mt-8 rounded-2xl px-10 py-4 text-lg font-semibold transition-all duration-300 ${
+            idea.trim()
+              ? "bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 cursor-pointer"
+              : "bg-gray-700 text-gray-400 cursor-not-allowed opacity-60"
+          }`}
+        >
+          Generate Blueprint →
+        </motion.button>
+
         <p className="mt-6 text-sm text-gray-500">
           Powered by <span className="text-cyan-400">IBM Granite</span>
         </p>
-
       </motion.div>
-
     </section>
   );
 }

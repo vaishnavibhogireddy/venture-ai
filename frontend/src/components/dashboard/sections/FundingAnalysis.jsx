@@ -2,19 +2,38 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-function FundingAnalysis() {
-  const [open, setOpen] = useState(false);
+
+function FundingAnalysis({ blueprint }) {
+
+  const [open,setOpen] = useState(false);
+
+
+  const funding = blueprint?.funding || "";
+
+
+  const summary =
+    funding.split("\n").find(
+      line => line.trim().length > 20
+    )
+    ||
+    "AI will recommend the best funding opportunities for your startup.";
+
+
 
   return (
+
     <motion.div
       layout
       className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl"
     >
+
       <button
-        onClick={() => setOpen(!open)}
+        onClick={()=>setOpen(!open)}
         className="w-full p-7 text-left"
       >
+
         <div className="flex items-center justify-between">
+
 
           <div>
 
@@ -22,59 +41,65 @@ function FundingAnalysis() {
               Funding Strategy
             </h2>
 
-            <p className="mt-4 max-w-4xl text-gray-400 leading-7">
-              AI recommends the best funding options based on your startup stage,
-              estimated capital requirements and business model.
+
+            <p className="mt-4 text-gray-400 leading-7">
+              {summary}
             </p>
+
 
           </div>
 
-          <motion.div
-            animate={{ rotate: open ? 180 : 0 }}
-          >
+
+          <motion.div animate={{rotate:open?180:0}}>
+
             <ChevronDown
-              className="text-cyan-400"
               size={28}
+              className="text-cyan-400"
             />
+
           </motion.div>
 
+
         </div>
+
       </button>
+
+
 
       {open && (
 
         <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
+          initial={{opacity:0,height:0}}
+          animate={{opacity:1,height:"auto"}}
           className="border-t border-white/10 p-7"
         >
 
-          <div className="rounded-2xl border border-white/10 bg-black/20 p-6">
+          <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-6">
 
-            <h3 className="text-xl font-semibold text-white">
-              AI Recommendation
+
+            <h3 className="text-xl font-semibold text-cyan-400">
+              AI Funding Recommendations
             </h3>
 
-            <ul className="mt-5 space-y-3 text-gray-400">
 
-              <li>• Bootstrap during MVP.</li>
+            <p className="mt-5 whitespace-pre-wrap leading-8 text-gray-300">
+              {funding || "No funding recommendations generated."}
+            </p>
 
-              <li>• Raise Angel Funding after validation.</li>
-
-              <li>• Approach VC after product-market fit.</li>
-
-              <li>• Government startup grants available.</li>
-
-            </ul>
 
           </div>
+
 
         </motion.div>
 
       )}
 
+
     </motion.div>
+
   );
+
 }
+
 
 export default FundingAnalysis;
