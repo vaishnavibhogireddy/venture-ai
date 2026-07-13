@@ -1,0 +1,62 @@
+[
+  {
+    "title": "T-Hub",
+    "category": "Incubator",
+    "keywords": ["hyderabad", "startup", "technology"],
+    "description": "India's leading startup incubator offering mentorship, funding access, corporate partnerships and investor connections."
+  },
+  {
+    "title": "NSRCEL IIM Bangalore",
+    "category": "Incubator",
+    "keywords": ["iim bangalore", "nsrcel", "startup"],
+    "description": "Provides incubation, mentorship, accelerator programs and funding opportunities for startups."
+  },
+  {
+    "title": "CIIE.CO IIM Ahmedabad",
+    "category": "Incubator",
+    "keywords": ["ciie", "iim ahmedabad", "innovation"],
+    "description": "Supports innovative startups through incubation, seed funding, mentoring and networking."
+  },
+  {
+    "title": "IIT Madras Incubation Cell",
+    "category": "Incubator",
+    "keywords": ["iit madras", "deep tech"],
+    "description": "Supports deep-tech and technology startups with incubation, mentoring and investor access."
+  },
+  {
+    "title": "IIT Bombay SINE",
+    "category": "Incubator",
+    "keywords": ["iit bombay", "sine"],
+    "description": "Offers incubation, infrastructure, mentoring and funding opportunities for technology startups."
+  },
+  {
+    "title": "Kerala Startup Mission",
+    "category": "Government Incubator",
+    "keywords": ["kerala", "startup mission"],
+    "description": "Provides startup support, innovation grants, incubation and mentoring programs."
+  },
+  {
+    "title": "NASSCOM 10,000 Startups",
+    "category": "Accelerator",
+    "keywords": ["nasscom", "technology"],
+    "description": "Supports technology startups with mentoring, networking, funding and corporate connections."
+  },
+  {
+    "title": "Microsoft for Startups",
+    "category": "Corporate Accelerator",
+    "keywords": ["microsoft", "cloud", "azure"],
+    "description": "Provides cloud credits, mentoring, technical support and startup growth resources."
+  },
+  {
+    "title": "Google for Startups",
+    "category": "Corporate Accelerator",
+    "keywords": ["google", "startup"],
+    "description": "Supports startups through mentorship, cloud credits, networking and technical guidance."
+  },
+  {
+    "title": "Y Combinator",
+    "category": "Global Accelerator",
+    "keywords": ["yc", "startup", "investment"],
+    "description": "World-renowned startup accelerator providing seed investment, mentorship and investor access."
+  }
+]

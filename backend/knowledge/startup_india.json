@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Startup India Recognition",
+    "category": "Government Recognition",
+    "keywords": ["startup india", "dpiit", "recognition"],
+    "description": "Eligible startups can obtain DPIIT Startup India recognition to access government benefits, networking opportunities, tax exemptions and easier compliance."
+  },
+  {
+    "title": "Startup India Seed Fund Scheme",
+    "category": "Funding",
+    "keywords": ["seed fund", "grant", "startup"],
+    "description": "Provides financial assistance to early-stage startups through approved incubators for proof of concept, prototype development, product trials and market entry."
+  },
+  {
+    "title": "Income Tax Exemption",
+    "category": "Tax Benefits",
+    "keywords": ["tax", "80IAC", "income tax"],
+    "description": "Eligible DPIIT-recognized startups may claim income tax exemption for a specified period subject to government eligibility criteria."
+  },
+  {
+    "title": "Self Certification",
+    "category": "Compliance",
+    "keywords": ["labour laws", "environment", "compliance"],
+    "description": "Recognized startups can self-certify compliance under selected labour and environmental laws during the initial years."
+  },
+  {
+    "title": "Startup India Hub",
+    "category": "Networking",
+    "keywords": ["mentorship", "network", "ecosystem"],
+    "description": "Provides access to mentors, investors, incubators, accelerators and startup resources through a centralized platform."
+  },
+  {
+    "title": "Patent Support",
+    "category": "Intellectual Property",
+    "keywords": ["patent", "ip", "innovation"],
+    "description": "Eligible startups receive support for patent filing, faster examination and reduced intellectual property filing costs."
+  },
+  {
+    "title": "Public Procurement",
+    "category": "Government Business",
+    "keywords": ["government", "procurement", "tender"],
+    "description": "Recognized startups receive relaxed eligibility criteria while participating in certain government procurement opportunities."
+  },
+  {
+    "title": "Credit Guarantee",
+    "category": "Finance",
+    "keywords": ["loan", "credit", "guarantee"],
+    "description": "Government-backed credit support helps startups obtain business financing with reduced collateral requirements under applicable schemes."
+  }
+]

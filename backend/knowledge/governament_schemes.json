@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Startup India",
+    "category": "Startup Ecosystem",
+    "keywords": ["startup india", "dpiit", "startup"],
+    "description": "Flagship Government of India initiative supporting startups through recognition, tax benefits, networking, mentorship and easier compliance."
+  },
+  {
+    "title": "Startup India Seed Fund Scheme",
+    "category": "Funding",
+    "keywords": ["seed fund", "startup funding", "grant"],
+    "description": "Provides financial assistance through eligible incubators for proof of concept, prototype development and commercialization."
+  },
+  {
+    "title": "MSME Registration (Udyam)",
+    "category": "MSME",
+    "keywords": ["msme", "udyam", "small business"],
+    "description": "Offers registered micro, small and medium enterprises access to financial assistance, subsidies and government support."
+  },
+  {
+    "title": "SIDBI Startup Assistance",
+    "category": "Finance",
+    "keywords": ["sidbi", "startup loan", "finance"],
+    "description": "Provides loans, venture debt, credit support and startup financing initiatives for eligible businesses."
+  },
+  {
+    "title": "Digital India",
+    "category": "Technology",
+    "keywords": ["digital india", "digital transformation"],
+    "description": "Promotes digital infrastructure, online services and technology adoption across India."
+  },
+  {
+    "title": "Make in India",
+    "category": "Manufacturing",
+    "keywords": ["make in india", "manufacturing"],
+    "description": "Encourages manufacturing, innovation and investment in India across multiple sectors."
+  },
+  {
+    "title": "Atal Innovation Mission",
+    "category": "Innovation",
+    "keywords": ["aim", "atal", "innovation"],
+    "description": "Supports innovation, entrepreneurship, incubation and startup ecosystem development."
+  },
+  {
+    "title": "Stand-Up India",
+    "category": "Entrepreneurship",
+    "keywords": ["stand up india", "loan"],
+    "description": "Provides bank loans to eligible entrepreneurs for setting up new enterprises."
+  },
+  {
+    "title": "Credit Guarantee Fund Trust for Micro and Small Enterprises (CGTMSE)",
+    "category": "Credit Support",
+    "keywords": ["cgtmse", "credit guarantee"],
+    "description": "Offers collateral-free credit guarantee support for eligible MSMEs through participating financial institutions."
+  },
+  {
+    "title": "Technology Development Board",
+    "category": "Technology Funding",
+    "keywords": ["tdb", "technology", "innovation funding"],
+    "description": "Supports commercialization of indigenous technologies through financial assistance."
+  },
+  {
+    "title": "Biotechnology Industry Research Assistance Council (BIRAC)",
+    "category": "Biotechnology",
+    "keywords": ["birac", "biotech", "healthcare"],
+    "description": "Provides grants, funding and incubation support for biotechnology and healthcare startups."
+  },
+  {
+    "title": "National Initiative for Developing and Harnessing Innovations (NIDHI)",
+    "category": "Innovation",
+    "keywords": ["nidhi", "innovation", "startup"],
+    "description": "Supports technology-driven startups through incubation, grants and entrepreneurial assistance."
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Bootstrapping",
+    "category": "Self Funding",
+    "keywords": ["bootstrapping", "self funding", "personal savings"],
+    "description": "Founders use personal savings or business revenue to build the startup without external investors."
+  },
+  {
+    "title": "Friends and Family Funding",
+    "category": "Early Stage",
+    "keywords": ["friends", "family", "seed"],
+    "description": "Initial funding raised from trusted friends and family members to validate the business idea."
+  },
+  {
+    "title": "Angel Investors",
+    "category": "Equity Funding",
+    "keywords": ["angel investor", "seed investment"],
+    "description": "High-net-worth individuals who invest in early-stage startups in exchange for equity."
+  },
+  {
+    "title": "Venture Capital",
+    "category": "Equity Funding",
+    "keywords": ["vc", "venture capital", "series a"],
+    "description": "Professional investment firms that fund high-growth startups with scalable business models."
+  },
+  {
+    "title": "Startup India Seed Fund",
+    "category": "Government Grant",
+    "keywords": ["startup india", "seed fund"],
+    "description": "Government-backed financial assistance for proof of concept, prototype development and commercialization."
+  },
+  {
+    "title": "SIDBI Support",
+    "category": "Government Finance",
+    "keywords": ["sidbi", "loan"],
+    "description": "Financial assistance, loans and startup-focused schemes provided by SIDBI."
+  },
+  {
+    "title": "Crowdfunding",
+    "category": "Community Funding",
+    "keywords": ["crowdfunding", "kickstarter", "community"],
+    "description": "Raising capital from a large number of people through online crowdfunding platforms."
+  },
+  {
+    "title": "Business Loans",
+    "category": "Debt Funding",
+    "keywords": ["loan", "bank", "business finance"],
+    "description": "Loans from banks or financial institutions to support startup operations and growth."
+  },
+  {
+    "title": "Incubator Funding",
+    "category": "Incubators",
+    "keywords": ["incubator", "startup support"],
+    "description": "Funding, mentorship and workspace support provided through startup incubators."
+  },
+  {
+    "title": "Accelerator Programs",
+    "category": "Accelerators",
+    "keywords": ["accelerator", "startup accelerator"],
+    "description": "Programs offering mentorship, networking and seed investment in exchange for equity."
+  }
+]

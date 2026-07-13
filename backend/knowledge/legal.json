@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Sole Proprietorship",
+    "category": "Business Registration",
+    "keywords": ["sole proprietorship", "single owner"],
+    "description": "Suitable for single-founder businesses with simple registration and compliance requirements."
+  },
+  {
+    "title": "Partnership Firm",
+    "category": "Business Registration",
+    "keywords": ["partnership", "partners"],
+    "description": "Suitable for businesses owned by two or more partners with a partnership agreement."
+  },
+  {
+    "title": "Limited Liability Partnership (LLP)",
+    "category": "Business Registration",
+    "keywords": ["llp", "limited liability"],
+    "description": "Provides limited liability protection while maintaining operational flexibility."
+  },
+  {
+    "title": "Private Limited Company",
+    "category": "Business Registration",
+    "keywords": ["private limited", "pvt ltd", "company"],
+    "description": "Preferred business structure for scalable startups seeking investors and venture capital."
+  },
+  {
+    "title": "GST Registration",
+    "category": "Tax Compliance",
+    "keywords": ["gst", "tax", "registration"],
+    "description": "Businesses exceeding applicable turnover thresholds or engaging in interstate trade must obtain GST registration."
+  },
+  {
+    "title": "PAN and TAN",
+    "category": "Tax",
+    "keywords": ["pan", "tan"],
+    "description": "Businesses require PAN for taxation, while TAN is needed for deducting and depositing TDS."
+  },
+  {
+    "title": "Trademark Registration",
+    "category": "Intellectual Property",
+    "keywords": ["trademark", "brand"],
+    "description": "Protects the startup's brand name, logo and identity from unauthorized use."
+  },
+  {
+    "title": "Patent Protection",
+    "category": "Intellectual Property",
+    "keywords": ["patent", "innovation"],
+    "description": "Protects novel inventions, products or technical processes developed by the startup."
+  },
+  {
+    "title": "Copyright",
+    "category": "Intellectual Property",
+    "keywords": ["copyright", "software", "content"],
+    "description": "Protects software code, designs, documents and other original creative works."
+  },
+  {
+    "title": "Privacy Policy",
+    "category": "Data Protection",
+    "keywords": ["privacy", "user data"],
+    "description": "Digital platforms collecting user information should publish a clear privacy policy."
+  },
+  {
+    "title": "Terms and Conditions",
+    "category": "Legal Documents",
+    "keywords": ["terms", "conditions"],
+    "description": "Defines the rules governing the use of the platform and protects both users and the business."
+  },
+  {
+    "title": "Data Protection Compliance",
+    "category": "Compliance",
+    "keywords": ["data protection", "privacy compliance"],
+    "description": "Businesses handling personal information should comply with applicable data protection and cybersecurity regulations."
+  }
+]

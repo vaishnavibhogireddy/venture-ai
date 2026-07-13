@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Problem Validation",
+    "category": "Market Research",
+    "keywords": ["problem", "validation"],
+    "description": "Ensure the startup solves a real and significant customer problem before building the product."
+  },
+  {
+    "title": "Customer Discovery",
+    "category": "Market Research",
+    "keywords": ["customer", "interviews"],
+    "description": "Conduct interviews and surveys to understand customer pain points and expectations."
+  },
+  {
+    "title": "Target Audience",
+    "category": "Market Analysis",
+    "keywords": ["target audience", "customers"],
+    "description": "Clearly identify the primary and secondary customer segments most likely to use the product."
+  },
+  {
+    "title": "Market Size",
+    "category": "Market Analysis",
+    "keywords": ["tam", "sam", "som"],
+    "description": "Estimate the Total Addressable Market (TAM), Serviceable Available Market (SAM) and Serviceable Obtainable Market (SOM)."
+  },
+  {
+    "title": "Competitor Research",
+    "category": "Competition",
+    "keywords": ["competitors", "market"],
+    "description": "Analyze existing competitors, identify strengths, weaknesses and market gaps."
+  },
+  {
+    "title": "Unique Value Proposition",
+    "category": "Business Strategy",
+    "keywords": ["usp", "value proposition"],
+    "description": "Clearly define what differentiates the startup from competitors."
+  },
+  {
+    "title": "Pricing Strategy",
+    "category": "Business Model",
+    "keywords": ["pricing", "subscription"],
+    "description": "Choose an appropriate pricing model such as subscription, freemium, one-time purchase or commission."
+  },
+  {
+    "title": "Go-To-Market Strategy",
+    "category": "Marketing",
+    "keywords": ["gtm", "launch"],
+    "description": "Define marketing channels, customer acquisition strategy and product launch plan."
+  },
+  {
+    "title": "Revenue Model",
+    "category": "Business Model",
+    "keywords": ["revenue", "income"],
+    "description": "Identify how the startup will generate sustainable revenue and achieve profitability."
+  },
+  {
+    "title": "Scalability",
+    "category": "Growth",
+    "keywords": ["growth", "scale"],
+    "description": "Evaluate whether the business can expand across regions, industries and customer segments."
+  },
+  {
+    "title": "Customer Retention",
+    "category": "Growth",
+    "keywords": ["retention", "engagement"],
+    "description": "Develop strategies to improve customer satisfaction, engagement and long-term retention."
+  },
+  {
+    "title": "Risk Assessment",
+    "category": "Business Planning",
+    "keywords": ["risk", "business"],
+    "description": "Identify technical, operational, financial and market risks before launching the startup."
+  }
+]
