@@ -1,105 +1,79 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-
 
 function FundingAnalysis({ blueprint }) {
+  const funding = blueprint?.fundingAnalysis || {};
 
-  const [open,setOpen] = useState(false);
-
-
-  const funding = blueprint?.funding || "";
-
-
-  const summary =
-    funding.split("\n").find(
-      line => line.trim().length > 20
-    )
-    ||
-    "AI will recommend the best funding opportunities for your startup.";
-
-
+  const sections = [
+    {
+      title: "Bootstrapping",
+      value: funding.bootstrapping,
+      isList: false,
+    },
+    {
+      title: "Angel Investors",
+      value: funding.angelInvestors,
+      isList: true,
+    },
+    {
+      title: "Venture Capital",
+      value: funding.ventureCapital,
+      isList: true,
+    },
+    {
+      title: "Grants",
+      value: funding.grants,
+      isList: true,
+    },
+    {
+      title: "Accelerators",
+      value: funding.accelerators,
+      isList: true,
+    },
+    {
+      title: "Incubators",
+      value: funding.incubators,
+      isList: true,
+    },
+  ];
 
   return (
-
-    <motion.div
-      layout
-      className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl"
+    <motion.section
+      id="funding"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
     >
+      <h2 className="mb-6 text-2xl font-bold text-white">
+        💸 Funding Analysis
+      </h2>
 
-      <button
-        onClick={()=>setOpen(!open)}
-        className="w-full p-7 text-left"
-      >
-
-        <div className="flex items-center justify-between">
-
-
-          <div>
-
-            <h2 className="text-2xl font-semibold text-white">
-              Funding Strategy
-            </h2>
-
-
-            <p className="mt-4 text-gray-400 leading-7">
-              {summary}
-            </p>
-
-
-          </div>
-
-
-          <motion.div animate={{rotate:open?180:0}}>
-
-            <ChevronDown
-              size={28}
-              className="text-cyan-400"
-            />
-
-          </motion.div>
-
-
-        </div>
-
-      </button>
-
-
-
-      {open && (
-
-        <motion.div
-          initial={{opacity:0,height:0}}
-          animate={{opacity:1,height:"auto"}}
-          className="border-t border-white/10 p-7"
-        >
-
-          <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-6">
-
-
-            <h3 className="text-xl font-semibold text-cyan-400">
-              AI Funding Recommendations
+      <div className="grid gap-5 md:grid-cols-2">
+        {sections.map((section) => (
+          <div
+            key={section.title}
+            className="rounded-xl border border-white/10 bg-white/5 p-5"
+          >
+            <h3 className="mb-3 font-semibold text-cyan-400">
+              {section.title}
             </h3>
 
-
-            <p className="mt-5 whitespace-pre-wrap leading-8 text-gray-300">
-              {funding || "No funding recommendations generated."}
-            </p>
-
-
+            {section.isList ? (
+              <ul className="space-y-2 text-gray-300">
+                {(section.value || []).map((item) => (
+                  <li key={item}>• {item}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-gray-300">
+                {section.value || "Not Available"}
+              </p>
+            )}
           </div>
-
-
-        </motion.div>
-
-      )}
-
-
-    </motion.div>
-
+        ))}
+      </div>
+    </motion.section>
   );
-
 }
-
 
 export default FundingAnalysis;

@@ -1,53 +1,52 @@
 function parseBlueprint(text) {
   try {
-    // Remove markdown fences
+    // Remove markdown if the model accidentally returns it
     const cleaned = text
       .replace(/```json/gi, "")
       .replace(/```/g, "")
       .trim();
 
-    let braceCount = 0;
+    // Find the first complete JSON object
+    let depth = 0;
     let start = -1;
     let end = -1;
 
     for (let i = 0; i < cleaned.length; i++) {
-      const char = cleaned[i];
-
-      if (char === "{") {
+      if (cleaned[i] === "{") {
         if (start === -1) start = i;
-        braceCount++;
+        depth++;
       }
 
-      if (char === "}") {
-        braceCount--;
+      if (cleaned[i] === "}") {
+        depth--;
 
-        if (braceCount === 0) {
+        if (depth === 0) {
           end = i;
-          break; // Stop at the FIRST complete JSON object
+          break;
         }
       }
     }
 
     if (start === -1 || end === -1) {
-      throw new Error("No complete JSON found.");
+      throw new Error("No valid JSON found.");
     }
 
-    const jsonText = cleaned.substring(start, end + 1);
+    const json = cleaned.substring(start, end + 1);
 
-    const data = JSON.parse(jsonText);
+    const data = JSON.parse(json);
 
     return {
       ideaValidation: data.ideaValidation || {},
+
       projectAnalysis: data.projectAnalysis || {},
 
       overview: data.overview || "",
+
       vision: data.vision || "",
 
       problem: data.problem || "",
-      solution: data.solution || "",
 
-      customers: data.customers || "",
-      market: data.market || "",
+      solution: data.solution || "",
 
       businessModel: data.businessModel || "",
 
@@ -55,40 +54,37 @@ function parseBlueprint(text) {
 
       goToMarket: data.goToMarket || "",
 
-      budget: data.budget || "",
-
-      funding: data.funding || "",
-
-      government: data.government || "",
-
-      future: data.future || "",
-
-      competitors: data.competitors || "",
-
-      legal: data.legal || "",
+      future: data.future || ""
     };
-  } catch (error) {
-    console.log("Blueprint Parser Error:", error.message);
+
+  } catch (err) {
+
+    console.log("Blueprint Parser Error:", err.message);
 
     return {
+
       ideaValidation: {},
+
       projectAnalysis: {},
+
       overview: "",
+
       vision: "",
+
       problem: "",
+
       solution: "",
-      customers: "",
-      market: "",
+
       businessModel: "",
+
       revenue: "",
+
       goToMarket: "",
-      budget: "",
-      funding: "",
-      government: "",
-      future: "",
-      competitors: "",
-      legal: "",
+
+      future: ""
+
     };
+
   }
 }
 

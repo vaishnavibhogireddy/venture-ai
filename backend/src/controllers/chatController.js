@@ -1,8 +1,10 @@
-const { retrieveKnowledge } = require("../services/ragService");
+const Blueprint = require("../models/Blueprint");
+
 const { buildMasterPrompt } = require("../prompts/masterPrompt");
 const { generateWithGranite } = require("../services/ibmService");
 const parseBlueprint = require("../utils/blueprintParser");
 
+// Local Agents
 const { generateMarketPrompt } = require("../agents/marketAgent");
 const { generateCompetitorPrompt } = require("../agents/competitorAgent");
 const { generateFinancePrompt } = require("../agents/financeAgent");
@@ -13,70 +15,66 @@ const { generateInvestorPrompt } = require("../agents/investorAgent");
 
 const chatController = async (req, res) => {
   try {
-    const { message } = req.body;
+    const message = req.body?.message?.trim();
+
+    if (!message) {
+      return res.status(400).json({
+        success: false,
+        message: "Startup idea is required.",
+      });
+    }
 
     console.log("\n==============================");
     console.log("USER IDEA:");
     console.log(message);
     console.log("==============================\n");
 
-    const ragResults = retrieveKnowledge(message);
+    // Run local agents — no IBM tokens used
+    const market = generateMarketPrompt(message);
+    const competitors = generateCompetitorPrompt(message);
+    const finance = generateFinancePrompt(message);
+    const legal = generateLegalPrompt(message);
+    const funding = generateFundingPrompt(message);
+    const government = generateGovernmentPrompt(message);
+    const investors = generateInvestorPrompt(message);
 
-    const ragContext = ragResults
-      .map((item) => `• ${item.title}: ${item.description}`)
-      .join("\n");
-
+    // One small IBM call
     const masterPrompt = buildMasterPrompt({
       idea: message,
-
-      ragContext,
-
-      market: generateMarketPrompt(message),
-
-      competitors: generateCompetitorPrompt(message),
-
-      finance: generateFinancePrompt(message),
-
-      legal: generateLegalPrompt(message),
-
-      funding: generateFundingPrompt(message),
-
-      government: generateGovernmentPrompt(message),
-
-      investors: generateInvestorPrompt(message),
     });
 
-    console.log("\n==============================");
-    console.log("MASTER PROMPT:");
-    console.log(masterPrompt);
-    console.log("==============================");
-    console.log("PROMPT LENGTH:", masterPrompt.length);
-    console.log("==============================\n");
+    console.log("Prompt Length:", masterPrompt.length);
 
     const response = await generateWithGranite(masterPrompt);
+    const blueprint = parseBlueprint(response);
 
-    console.log("\n==============================");
-    console.log("RAW AI RESPONSE:");
-    console.log(response);
-    console.log("==============================\n");
+    // Merge local-agent results
+    blueprint.marketAnalysis = market;
+    blueprint.competitorAnalysis = competitors;
+    blueprint.financeAnalysis = finance;
+    blueprint.legalAnalysis = legal;
+    blueprint.fundingAnalysis = funding;
+    blueprint.governmentSchemes = government;
+    blueprint.investorAnalysis = investors;
 
-    const parsed = parseBlueprint(response);
+    // Save generated blueprint to MongoDB
+    const savedBlueprint = await Blueprint.create({
+      idea: message,
+      blueprint,
+    });
 
-    console.log("\n==============================");
-    console.log("PARSED BLUEPRINT:");
-    console.dir(parsed, { depth: null });
-    console.log("==============================\n");
+    console.log("Blueprint saved to MongoDB:", savedBlueprint._id.toString());
 
-    res.json({
+    return res.status(200).json({
       success: true,
       userMessage: message,
-      blueprint: parsed,
+      blueprint,
     });
   } catch (error) {
     console.error("CHAT CONTROLLER ERROR:");
     console.error(error);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "AI Generation Failed",
       error: error.message,

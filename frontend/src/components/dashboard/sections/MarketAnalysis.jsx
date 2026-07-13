@@ -1,108 +1,88 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-
-import MarketChart from "../charts/MarketChart";
-import MarketShareChart from "../charts/MarketShareChart";
-
 
 function MarketAnalysis({ blueprint }) {
-
-  const [open, setOpen] = useState(false);
-
-  const market = blueprint?.market || "";
-
+  const market = blueprint?.marketAnalysis || {};
 
   return (
-
-    <motion.div
-      layout
-      className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden"
+    <motion.section
+     id="market-analysis"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
     >
+      <h2 className="mb-6 text-2xl font-bold text-white">
+        📈 Market Analysis
+      </h2>
 
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full p-7 text-left"
-      >
+      <div className="grid gap-5 md:grid-cols-2">
 
-        <div className="flex items-center justify-between">
-
-          <div>
-
-            <h2 className="text-2xl font-semibold text-white">
-              Market Analysis
-            </h2>
-
-            <p className="mt-4 text-gray-400 leading-7 max-w-4xl">
-              {market || "AI generated market insights will appear here."}
-            </p>
-
-          </div>
-
-
-          <motion.div
-            animate={{rotate: open ? 180 : 0}}
-          >
-
-            <ChevronDown
-              size={28}
-              className="text-cyan-400"
-            />
-
-          </motion.div>
-
-
+        <div className="rounded-xl bg-white/5 p-5">
+          <h3 className="text-cyan-400 font-semibold mb-2">
+            Industry
+          </h3>
+          <p className="text-gray-300">
+            {market.industry || "Not Available"}
+          </p>
         </div>
 
-      </button>
+        <div className="rounded-xl bg-white/5 p-5">
+          <h3 className="text-cyan-400 font-semibold mb-2">
+            Target Audience
+          </h3>
+          <p className="text-gray-300">
+            {market.audience || "Not Available"}
+          </p>
+        </div>
 
+        <div className="rounded-xl bg-white/5 p-5">
+          <h3 className="text-cyan-400 font-semibold mb-2">
+            Market Size
+          </h3>
+          <p className="text-gray-300">
+            {market.marketSize || "Not Available"}
+          </p>
+        </div>
 
+        <div className="rounded-xl bg-white/5 p-5">
+          <h3 className="text-cyan-400 font-semibold mb-2">
+            Growth
+          </h3>
+          <p className="text-gray-300">
+            {market.growth || "Not Available"}
+          </p>
+        </div>
 
-      {open && (
+      </div>
 
-        <motion.div
-          initial={{opacity:0,height:0}}
-          animate={{opacity:1,height:"auto"}}
-          className="border-t border-white/10 p-7"
-        >
+      <div className="mt-6 rounded-xl bg-white/5 p-5">
+        <h3 className="text-cyan-400 font-semibold mb-2">
+          Market Demand
+        </h3>
 
+        <p className="text-gray-300">
+          {market.demand || "Not Available"}
+        </p>
+      </div>
 
-          <div className="grid xl:grid-cols-2 gap-7">
+      <div className="mt-6 rounded-xl bg-white/5 p-5">
+        <h3 className="text-cyan-400 font-semibold mb-4">
+          Current Industry Trends
+        </h3>
 
-            <MarketChart/>
-
-            <MarketShareChart/>
-
-          </div>
-
-
-
-          <div className="mt-8 rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-6">
-
-
-            <h3 className="text-xl font-semibold text-cyan-400">
-              AI Insights
-            </h3>
-
-
-            <p className="mt-4 text-gray-300 leading-7">
-              {market || "No market insights generated."}
-            </p>
-
-
-          </div>
-
-
-        </motion.div>
-
-      )}
-
-
-    </motion.div>
-
+        <div className="flex flex-wrap gap-3">
+          {(market.trends || []).map((trend) => (
+            <span
+              key={trend}
+              className="rounded-full bg-cyan-500/10 border border-cyan-400/20 px-4 py-2 text-sm text-cyan-300"
+            >
+              {trend}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.section>
   );
-
 }
-
 
 export default MarketAnalysis;

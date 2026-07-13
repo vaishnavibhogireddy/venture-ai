@@ -1,66 +1,112 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-
 
 function LegalAnalysis({ blueprint }) {
+  const legal = blueprint?.legalAnalysis || {};
 
-const [open,setOpen] = useState(false);
-
-
-const legal = blueprint?.legal || "";
-
-
-const summary =
-legal.split("\n").find(
-(line)=>line.trim().length>20
-)
-||
-"AI will suggest legal requirements for your startup.";
   return (
-    <motion.div
-      layout
-      className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl"
+    <motion.section
+     id="legal"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
     >
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full p-7 text-left"
-      >
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-semibold text-white">
-              Legal & Compliance
-            </h2>
+      <h2 className="mb-6 text-2xl font-bold text-white">
+        ⚖️ Legal Analysis
+      </h2>
 
-            <p className="mt-4 max-w-4xl leading-7 text-gray-400">
-              {summary}
-            </p>
-          </div>
 
-          <motion.div animate={{ rotate: open ? 180 : 0 }}>
-            <ChevronDown className="text-cyan-400" size={28} />
-          </motion.div>
+      <div className="grid gap-5 md:grid-cols-2">
+
+
+        <div className="rounded-xl bg-white/5 p-5">
+          <h3 className="mb-3 font-semibold text-cyan-400">
+            Business Registration
+          </h3>
+
+          <p className="text-gray-300">
+            {legal.businessRegistration || "Not Available"}
+          </p>
         </div>
-      </button>
 
-      {open && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          className="border-t border-white/10 p-7"
-        >
-          <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-6">
-            <h3 className="text-xl font-semibold text-cyan-400">
-              AI Legal Recommendations
-            </h3>
 
-            <p className="mt-5 whitespace-pre-wrap leading-8 text-gray-300">
-              {legal || "No legal recommendations generated."}
-            </p>
-          </div>
-        </motion.div>
-      )}
-    </motion.div>
+
+        <div className="rounded-xl bg-white/5 p-5">
+          <h3 className="mb-3 font-semibold text-cyan-400">
+            Data Privacy
+          </h3>
+
+          <p className="text-gray-300 leading-7">
+            {legal.dataPrivacy || "Not Available"}
+          </p>
+        </div>
+
+
+
+        <div className="rounded-xl bg-white/5 p-5">
+
+          <h3 className="mb-3 font-semibold text-cyan-400">
+            Licenses
+          </h3>
+
+
+          <ul className="space-y-2 text-gray-300">
+
+            {(legal.licenses || []).map((item) => (
+              <li key={item}>
+                • {item}
+              </li>
+            ))}
+
+          </ul>
+
+        </div>
+
+
+
+
+        <div className="rounded-xl bg-white/5 p-5">
+
+          <h3 className="mb-3 font-semibold text-cyan-400">
+            Compliance
+          </h3>
+
+
+          <ul className="space-y-2 text-gray-300">
+
+            {(legal.compliance || []).map((item) => (
+              <li key={item}>
+                • {item}
+              </li>
+            ))}
+
+          </ul>
+
+        </div>
+
+
+
+      </div>
+
+
+
+      <div className="mt-6 rounded-xl bg-white/5 p-5">
+
+
+        <h3 className="mb-3 font-semibold text-cyan-400">
+          Intellectual Property
+        </h3>
+
+
+        <p className="text-gray-300 leading-7">
+          {legal.intellectualProperty || "Not Available"}
+        </p>
+
+
+      </div>
+
+
+    </motion.section>
   );
 }
 

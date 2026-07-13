@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import { generateBlueprint } from "../services/api";
@@ -22,9 +22,10 @@ function Loading() {
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
 
-
+const hasRequested = useRef(false);
   useEffect(() => {
-
+   if (hasRequested.current) return;
+hasRequested.current = true;
     if (!idea) {
       navigate("/");
       return;

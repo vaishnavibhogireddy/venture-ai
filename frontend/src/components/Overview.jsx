@@ -1,222 +1,130 @@
 import { motion } from "framer-motion";
 
-
 function Overview({ blueprint }) {
 
+  const validation = blueprint?.ideaValidation || {};
 
   return (
+   <motion.section
+  id="overview"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
+    >
 
-    <div className="space-y-10">
-
-
-      <div>
-
-        <p className="text-cyan-400 uppercase tracking-[0.25em] text-sm">
-          Startup Blueprint
-        </p>
-
-
-        <h1 className="mt-3 text-5xl font-bold text-white">
-
-          {
-            blueprint?.ideaValidation?.ideaName ||
-            "Untitled Startup"
-          }
-
-        </h1>
+      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
 
 
-        <p className="mt-4 max-w-3xl text-gray-400 leading-8">
+        <div>
 
-          {
-            blueprint?.overview ||
-            "AI generated startup overview will appear here."
-          }
-
-        </p>
+          <p className="text-sm uppercase tracking-widest text-cyan-400">
+            Startup Blueprint
+          </p>
 
 
-      </div>
+          <h1 className="mt-3 text-4xl font-bold text-white">
+
+            {validation.ideaName || "Startup Idea"}
+
+          </h1>
 
 
+          <p className="mt-3 text-gray-400">
+
+            {blueprint?.overview ||
+              "AI generated startup analysis"}
+
+          </p>
 
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+        </div>
 
 
 
-        <Card
-
-          title="Vision"
-
-          value={
-            blueprint?.vision ||
-            "Not Available"
-          }
-
-        />
+        <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-8 py-6 text-center">
 
 
-
-        <Card
-
-          title="Business Model"
-
-          value={
-            blueprint?.businessModel ||
-            "Not Available"
-          }
-
-        />
+          <p className="text-sm text-cyan-300">
+            Startup Score
+          </p>
 
 
+          <h2 className="mt-2 text-4xl font-bold text-white">
 
-        <Card
+            {validation.startupPotentialScore || "N/A"}
 
-          title="Revenue Streams"
-
-          value={
-            blueprint?.revenue ||
-            "Not Available"
-          }
-
-        />
+          </h2>
 
 
-
-        <Card
-
-          title="Funding"
-
-          value={
-            blueprint?.funding ||
-            "Not Available"
-          }
-
-        />
+        </div>
 
 
       </div>
 
 
 
+      <div className="mt-8 grid gap-5 md:grid-cols-3">
 
 
-      <div className="grid gap-6 xl:grid-cols-2">
+        <div className="rounded-xl bg-white/5 p-5">
+
+          <h3 className="text-cyan-400 font-semibold">
+            Category
+          </h3>
+
+
+          <p className="mt-2 text-gray-300">
+
+            {validation.ideaCategory || "Not Available"}
+
+          </p>
+
+        </div>
 
 
 
-        <InfoCard
 
-          title="Problem Statement"
+        <div className="rounded-xl bg-white/5 p-5">
 
-          text={
-            blueprint?.problem
-          }
-
-        />
+          <h3 className="text-cyan-400 font-semibold">
+            Vision
+          </h3>
 
 
+          <p className="mt-2 text-gray-300">
 
-        <InfoCard
+            {blueprint?.vision || "Not Available"}
 
-          title="Proposed Solution"
+          </p>
 
-          text={
-            blueprint?.solution
-          }
+        </div>
 
-        />
+
+
+
+        <div className="rounded-xl bg-white/5 p-5">
+
+          <h3 className="text-cyan-400 font-semibold">
+            Future Scope
+          </h3>
+
+
+          <p className="mt-2 text-gray-300">
+
+            {blueprint?.future || "Not Available"}
+
+          </p>
+
+        </div>
 
 
       </div>
 
 
 
-    </div>
-
+    </motion.section>
   );
-
 }
-
-
-
-
-
-function Card({title,value}){
-
-
-return (
-
-<motion.div
-
-whileHover={{
-  y:-5
-}}
-
-className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
-
->
-
-
-<p className="text-gray-400">
-{title}
-</p>
-
-
-<p className="mt-4 text-white leading-7">
-
-{value}
-
-</p>
-
-
-</motion.div>
-
-);
-
-}
-
-
-
-
-
-function InfoCard({title,text}){
-
-
-return (
-
-<motion.div
-
-whileHover={{
-  y:-5
-}}
-
-className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
-
->
-
-
-<h2 className="text-2xl font-bold text-white">
-
-{title}
-
-</h2>
-
-
-<p className="mt-5 text-gray-400 leading-8">
-
-{text || "Not Available"}
-
-</p>
-
-
-</motion.div>
-
-);
-
-}
-
 
 
 export default Overview;

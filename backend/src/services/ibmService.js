@@ -13,13 +13,10 @@ const watsonxAI = WatsonXAI.newInstance({
   authenticator,
 });
 
-
 const generateWithLLM = async (prompt) => {
   try {
 
     const params = {
-      // Currently using IBM watsonx provided model
-      // Later we can replace this with Granite model ID
       modelId: "meta-llama/llama-3-3-70b-instruct",
 
       projectId,
@@ -27,35 +24,33 @@ const generateWithLLM = async (prompt) => {
       input: prompt,
 
       parameters: {
-        max_new_tokens: 2000,
-        temperature: 0.5,
-        top_p: 0.9,
-      },
+        decoding_method: "greedy",
+        max_new_tokens: 900,
+        min_new_tokens: 200,
+        temperature: 0.2,
+        repetition_penalty: 1.05
+      }
     };
 
-
     console.log("\n==============================");
-    console.log("INPUT SENT TO IBM WATSONX:");
-    console.log(params.input);
-    console.log("==============================\n");
-
+    console.log("Prompt Length:", prompt.length);
+    console.log("==============================");
 
     const response = await watsonxAI.generateText(params);
 
+    const generated =
+      response.result.results?.[0]?.generated_text || "";
 
     console.log("\n==============================");
-    console.log("FULL IBM RESPONSE:");
-    console.log(JSON.stringify(response, null, 2));
-    console.log("==============================\n");
+    console.log("Response Length:", generated.length);
+    console.log("==============================");
 
-
-    return response.result.results[0].generated_text;
-
+    return generated;
 
   } catch (error) {
 
     console.error(
-      "IBM watsonx Error:",
+      "IBM Error:",
       error.response?.data || error.message
     );
 
