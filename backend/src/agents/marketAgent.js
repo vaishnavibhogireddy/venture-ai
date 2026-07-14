@@ -17,6 +17,61 @@ const industries = {
       "Health analytics",
     ],
   },
+    market: {
+    industry: "Market Intelligence Technology",
+    audience: "Startups, businesses, analysts and investors",
+    marketSize: "Large",
+    growth: "High",
+    demand: "Increasing",
+    trends: [
+      "AI-powered market research",
+      "Predictive analytics",
+      "Real-time business intelligence",
+      "Automated trend forecasting",
+    ],
+  },
+
+  analytics: {
+    industry: "Data Analytics",
+    audience: "Businesses and decision-makers",
+    marketSize: "Large",
+    growth: "Very High",
+    demand: "High",
+    trends: [
+      "Predictive analytics",
+      "AI business intelligence",
+      "Data-driven decision making",
+      "Real-time dashboards",
+    ],
+  },
+
+  predictor: {
+    industry: "Predictive Analytics",
+    audience: "Businesses, researchers and analysts",
+    marketSize: "Large",
+    growth: "High",
+    demand: "Increasing",
+    trends: [
+      "Machine learning forecasting",
+      "Predictive modelling",
+      "Business intelligence",
+      "Automated insights",
+    ],
+  },
+
+  ai: {
+    industry: "Artificial Intelligence",
+    audience: "Businesses and technology users",
+    marketSize: "Very Large",
+    growth: "Very High",
+    demand: "Very High",
+    trends: [
+      "Generative AI",
+      "AI automation",
+      "Predictive intelligence",
+      "Personalized digital services",
+    ],
+  },
 
   health: {
     industry: "HealthTech",

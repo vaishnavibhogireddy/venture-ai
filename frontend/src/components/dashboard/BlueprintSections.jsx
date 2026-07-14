@@ -1,3 +1,5 @@
+import SectionCard from "./SectionCard";
+
 import MarketAnalysis from "./sections/MarketAnalysis";
 import CompetitorAnalysis from "./sections/CompetitorAnalysis";
 import FundingAnalysis from "./sections/FundingAnalysis";
@@ -8,216 +10,282 @@ import LegalAnalysis from "./sections/LegalAnalysis";
 import InvestorAnalysis from "./sections/InvestorAnalysis";
 
 function BlueprintSections({ blueprint }) {
-
   const validation = blueprint?.ideaValidation || {};
   const project = blueprint?.projectAnalysis || {};
+  const government = blueprint?.governmentSchemes || {};
+
+  const getSummary = (value, fallback) => {
+    if (typeof value === "string" && value.trim()) {
+      return value.length > 180
+        ? `${value.slice(0, 180)}...`
+        : value;
+    }
+
+    return fallback;
+  };
 
   return (
-
-    <div className="space-y-8">
-
-
+    <div className="space-y-6">
       {/* Idea Validation */}
 
-      <section className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+      <SectionCard
+        id="validation"
+        title="🧠 Idea Validation"
+        summary={getSummary(
+          validation.problemValidation,
+          "Review whether the startup solves a genuine problem, has market demand and is technically feasible."
+        )}
+        defaultOpen
+      >
+        <div className="grid gap-4 md:grid-cols-3">
+          <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+            <h3 className="font-semibold text-cyan-400">
+              Problem Validation
+            </h3>
 
+            <p className="mt-3 leading-7 text-gray-300">
+              {validation.problemValidation || "Not Available"}
+            </p>
+          </div>
 
-        <h2 className="mb-5 text-2xl font-bold text-white">
-          🧠 Idea Validation
-        </h2>
+          <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+            <h3 className="font-semibold text-cyan-400">
+              Market Validation
+            </h3>
 
+            <p className="mt-3 leading-7 text-gray-300">
+              {validation.marketValidation || "Not Available"}
+            </p>
+          </div>
 
-        <div className="space-y-3 text-gray-300">
+          <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+            <h3 className="font-semibold text-cyan-400">
+              Technical Feasibility
+            </h3>
 
-
-          <p>
-            <span className="font-semibold text-white">
-              Problem Validation:
-            </span>{" "}
-            {validation.problemValidation || "Not Available"}
-          </p>
-
-
-          <p>
-            <span className="font-semibold text-white">
-              Market Validation:
-            </span>{" "}
-            {validation.marketValidation || "Not Available"}
-          </p>
-
-
-          <p>
-            <span className="font-semibold text-white">
-              Technical Feasibility:
-            </span>{" "}
-            {validation.technicalFeasibility || "Not Available"}
-          </p>
-
-
+            <p className="mt-3 leading-7 text-gray-300">
+              {validation.technicalFeasibility || "Not Available"}
+            </p>
+          </div>
         </div>
-
-
-      </section>
-
-
-
+      </SectionCard>
 
       {/* Project Decision */}
 
+      <SectionCard
+        id="project-decision"
+        title="🚀 Project vs Startup Decision"
+        summary={getSummary(
+          project.howToConvertIntoStartup,
+          "Understand whether the idea is currently a project or a scalable startup and what improvements are required."
+        )}
+      >
+        <div className="space-y-5">
+          <div className="inline-flex rounded-xl border border-cyan-400/20 bg-cyan-400/10 px-5 py-3">
+            <p className="text-gray-300">
+              <span className="font-semibold text-white">
+                Classification:
+              </span>{" "}
+              {project.isProjectOnly || "Not Available"}
+            </p>
+          </div>
 
-      <section className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+          <div>
+            <h3 className="font-semibold text-cyan-400">
+              How to convert it into a startup
+            </h3>
 
+            <p className="mt-3 leading-7 text-gray-300">
+              {project.howToConvertIntoStartup ||
+                "No improvement suggestions available"}
+            </p>
+          </div>
+        </div>
+      </SectionCard>
 
-        <h2 className="mb-5 text-2xl font-bold text-white">
-          🚀 Project vs Startup Decision
-        </h2>
+      {/* Market */}
 
+      <SectionCard
+        id="market"
+        title="📈 Market Analysis"
+        summary={getSummary(
+          blueprint?.market?.summary || blueprint?.marketAnalysis?.summary,
+          "Explore the target audience, market opportunity, industry demand and growth potential."
+        )}
+      >
+        <MarketAnalysis blueprint={blueprint} />
+      </SectionCard>
 
-        <p className="text-gray-300">
+      {/* Competitors */}
 
-          <span className="font-semibold text-white">
-            Classification:
-          </span>{" "}
+      <SectionCard
+        id="competitors"
+        title="👥 Competitor Analysis"
+        summary={getSummary(
+          blueprint?.competitors?.summary ||
+            blueprint?.competitorAnalysis?.summary,
+          "Review major competitors, alternatives, competitive strengths and opportunities for differentiation."
+        )}
+      >
+        <CompetitorAnalysis blueprint={blueprint} />
+      </SectionCard>
 
-          {project.isProjectOnly || "Not Available"}
+      {/* Budget */}
 
-        </p>
+      <SectionCard
+        id="budget"
+        title="💰 Budget Analysis"
+        summary={getSummary(
+          blueprint?.budget?.summary || blueprint?.budgetAnalysis?.summary,
+          "Understand expected startup costs and how the available budget can be allocated."
+        )}
+      >
+        <BudgetAnalysis blueprint={blueprint} />
+      </SectionCard>
 
+      {/* Funding */}
 
+      <SectionCard
+        id="funding"
+        title="🤝 Funding Analysis"
+        summary={getSummary(
+          blueprint?.funding?.summary ||
+            blueprint?.fundingAnalysis?.summary,
+          "Explore suitable funding stages, funding sources and financing opportunities."
+        )}
+      >
+        <FundingAnalysis blueprint={blueprint} />
+      </SectionCard>
 
-        <p className="mt-4 text-gray-400 leading-7">
+      {/* Investors */}
 
-          {project.howToConvertIntoStartup ||
-          "No improvement suggestions available"}
+      <SectionCard
+        id="investors"
+        title="🏦 Investor Analysis"
+        summary={getSummary(
+          blueprint?.investors?.summary ||
+            blueprint?.investorAnalysis?.summary,
+          "Identify suitable investors, incubators and startup support networks."
+        )}
+      >
+        <InvestorAnalysis blueprint={blueprint} />
+      </SectionCard>
 
-        </p>
+      {/* Revenue */}
 
+      <SectionCard
+        id="revenue"
+        title="📊 Revenue Model"
+        summary={getSummary(
+          blueprint?.revenue?.summary ||
+            blueprint?.revenueAnalysis?.summary,
+          "Review potential revenue streams, pricing models and expected business growth."
+        )}
+      >
+        <RevenueAnalysis blueprint={blueprint} />
+      </SectionCard>
 
-      </section>
+      {/* Go To Market */}
 
+      <SectionCard
+        id="go-to-market"
+        title="🎯 Go-To-Market Strategy"
+        summary={getSummary(
+          blueprint?.goToMarket?.summary ||
+            blueprint?.goToMarketAnalysis?.summary,
+          "Understand how the startup can reach early customers, build awareness and enter the market."
+        )}
+      >
+        <GoToMarketAnalysis blueprint={blueprint} />
+      </SectionCard>
 
+      {/* Legal */}
 
-
-
-
-      <MarketAnalysis blueprint={blueprint}/>
-
-
-      <CompetitorAnalysis blueprint={blueprint}/>
-
-
-      <BudgetAnalysis blueprint={blueprint}/>
-
-
-      <FundingAnalysis blueprint={blueprint}/>
-
-      <InvestorAnalysis blueprint={blueprint}/>
-
-
-      <RevenueAnalysis blueprint={blueprint}/>
-
-
-      <GoToMarketAnalysis blueprint={blueprint}/>
-
-
-      <LegalAnalysis blueprint={blueprint}/>
-
-
-
-
+      <SectionCard
+        id="legal"
+        title="⚖️ Legal Requirements"
+        summary={getSummary(
+          blueprint?.legal?.summary ||
+            blueprint?.legalAnalysis?.summary,
+          "Review business registration, compliance, taxation, privacy and intellectual-property requirements."
+        )}
+      >
+        <LegalAnalysis blueprint={blueprint} />
+      </SectionCard>
 
       {/* Government Schemes */}
 
+      <SectionCard
+        id="government"
+        title="🏛 Government Schemes"
+        summary="Explore Startup India support, MSME programmes, grants and subsidies relevant to the startup."
+      >
+        <div className="grid gap-5 md:grid-cols-2">
+          <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+            <h3 className="font-semibold text-cyan-400">
+              Startup India
+            </h3>
 
-      <section 
-      id="government"
-      className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+            <p className="mt-3 leading-7 text-gray-300">
+              {government.startupIndia || "Not Available"}
+            </p>
+          </div>
 
+          <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+            <h3 className="font-semibold text-cyan-400">
+              MSME Support
+            </h3>
 
-  <h2 className="mb-5 text-2xl font-bold text-white">
-    🏛 Government Schemes
-  </h2>
+            <p className="mt-3 leading-7 text-gray-300">
+              {government.msme || "Not Available"}
+            </p>
+          </div>
 
+          <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+            <h3 className="font-semibold text-cyan-400">
+              Grants
+            </h3>
 
-  <div className="space-y-5">
+            {Array.isArray(government.grants) &&
+            government.grants.length > 0 ? (
+              <ul className="mt-3 space-y-2 text-gray-300">
+                {government.grants.map((item, index) => (
+                  <li key={`${item}-${index}`}>
+                    • {item}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-3 text-gray-400">
+                Not Available
+              </p>
+            )}
+          </div>
 
+          <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+            <h3 className="font-semibold text-cyan-400">
+              Subsidies
+            </h3>
 
-    <div>
-      <h3 className="font-semibold text-cyan-400">
-        Startup India
-      </h3>
-
-      <p className="mt-2 text-gray-300 leading-7">
-        {blueprint?.governmentSchemes?.startupIndia ||
-        "Not Available"}
-      </p>
+            {Array.isArray(government.subsidies) &&
+            government.subsidies.length > 0 ? (
+              <ul className="mt-3 space-y-2 text-gray-300">
+                {government.subsidies.map((item, index) => (
+                  <li key={`${item}-${index}`}>
+                    • {item}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-3 text-gray-400">
+                Not Available
+              </p>
+            )}
+          </div>
+        </div>
+      </SectionCard>
     </div>
-
-
-
-    <div>
-      <h3 className="font-semibold text-cyan-400">
-        MSME Support
-      </h3>
-
-      <p className="mt-2 text-gray-300 leading-7">
-        {blueprint?.governmentSchemes?.msme ||
-        "Not Available"}
-      </p>
-    </div>
-
-
-
-
-    <div>
-      <h3 className="font-semibold text-cyan-400">
-        Grants
-      </h3>
-
-      <ul className="mt-2 space-y-2 text-gray-300">
-
-        {(blueprint?.governmentSchemes?.grants || [])
-          .map((item)=>(
-            <li key={item}>
-              • {item}
-            </li>
-          ))}
-
-      </ul>
-    </div>
-
-
-
-
-    <div>
-      <h3 className="font-semibold text-cyan-400">
-        Subsidies
-      </h3>
-
-      <ul className="mt-2 space-y-2 text-gray-300">
-
-        {(blueprint?.governmentSchemes?.subsidies || [])
-          .map((item)=>(
-            <li key={item}>
-              • {item}
-            </li>
-          ))}
-
-      </ul>
-    </div>
-
-
-  </div>
-
-
-</section>
-
-
-
-    </div>
-
   );
 }
-
 
 export default BlueprintSections;

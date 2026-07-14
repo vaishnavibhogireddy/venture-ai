@@ -8,18 +8,6 @@ function Navbar() {
           Ventora
         </h1>
 
-        {/* Right Side */}
-        <div className="flex items-center gap-5">
-
-          <button className="text-gray-300 hover:text-white transition duration-300">
-            Login
-          </button>
-
-          <button className="rounded-xl bg-violet-600 px-5 py-2.5 text-white font-medium hover:bg-violet-500 transition-all duration-300 shadow-lg shadow-violet-600/30 hover:shadow-violet-500/50">
-            Sign Up
-          </button>
-
-        </div>
 
       </nav>
     </header>

@@ -1,24 +1,11 @@
-import { motion } from "framer-motion";
-
 function MarketAnalysis({ blueprint }) {
   const market = blueprint?.marketAnalysis || {};
 
   return (
-    <motion.section
-     id="market-analysis"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
-    >
-      <h2 className="mb-6 text-2xl font-bold text-white">
-        📈 Market Analysis
-      </h2>
-
+    <div className="space-y-6">
       <div className="grid gap-5 md:grid-cols-2">
-
-        <div className="rounded-xl bg-white/5 p-5">
-          <h3 className="text-cyan-400 font-semibold mb-2">
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+          <h3 className="mb-2 font-semibold text-cyan-400">
             Industry
           </h3>
           <p className="text-gray-300">
@@ -26,8 +13,8 @@ function MarketAnalysis({ blueprint }) {
           </p>
         </div>
 
-        <div className="rounded-xl bg-white/5 p-5">
-          <h3 className="text-cyan-400 font-semibold mb-2">
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+          <h3 className="mb-2 font-semibold text-cyan-400">
             Target Audience
           </h3>
           <p className="text-gray-300">
@@ -35,8 +22,8 @@ function MarketAnalysis({ blueprint }) {
           </p>
         </div>
 
-        <div className="rounded-xl bg-white/5 p-5">
-          <h3 className="text-cyan-400 font-semibold mb-2">
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+          <h3 className="mb-2 font-semibold text-cyan-400">
             Market Size
           </h3>
           <p className="text-gray-300">
@@ -44,44 +31,55 @@ function MarketAnalysis({ blueprint }) {
           </p>
         </div>
 
-        <div className="rounded-xl bg-white/5 p-5">
-          <h3 className="text-cyan-400 font-semibold mb-2">
+        <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+          <h3 className="mb-2 font-semibold text-cyan-400">
             Growth
           </h3>
           <p className="text-gray-300">
             {market.growth || "Not Available"}
           </p>
         </div>
-
       </div>
 
-      <div className="mt-6 rounded-xl bg-white/5 p-5">
-        <h3 className="text-cyan-400 font-semibold mb-2">
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <h3 className="mb-2 font-semibold text-cyan-400">
           Market Demand
         </h3>
 
-        <p className="text-gray-300">
+        <p className="leading-7 text-gray-300">
           {market.demand || "Not Available"}
         </p>
       </div>
 
-      <div className="mt-6 rounded-xl bg-white/5 p-5">
-        <h3 className="text-cyan-400 font-semibold mb-4">
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <h3 className="mb-4 font-semibold text-cyan-400">
           Current Industry Trends
         </h3>
 
-        <div className="flex flex-wrap gap-3">
-          {(market.trends || []).map((trend) => (
-            <span
-              key={trend}
-              className="rounded-full bg-cyan-500/10 border border-cyan-400/20 px-4 py-2 text-sm text-cyan-300"
-            >
-              {trend}
-            </span>
-          ))}
-        </div>
+        {Array.isArray(market.trends) && market.trends.length > 0 ? (
+          <div className="flex flex-wrap gap-3">
+            {market.trends.map((trend, index) => (
+              <span
+                key={`${trend}-${index}`}
+                className="
+                  rounded-full
+                  border border-cyan-400/20
+                  bg-cyan-500/10
+                  px-4 py-2
+                  text-sm text-cyan-300
+                "
+              >
+                {trend}
+              </span>
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-400">
+            Not Available
+          </p>
+        )}
       </div>
-    </motion.section>
+    </div>
   );
 }
 
